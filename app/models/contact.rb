@@ -16,12 +16,12 @@ class Contact < ActiveRecord::Base
     foreign_key: :user_id,
     class_name: 'User'
 
-  has_many :contact_shares,
+  has_many :contact_shares, :dependent => :destroy,
     primary_key: :id,
     foreign_key: :contact_id,
     class_name: 'ContactShare'
 
-  has_many :shared_users,
+  has_many :shared_users, :dependent => :destroy,
     through: :contact_shares,
     source: :user
 end

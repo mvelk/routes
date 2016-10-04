@@ -55,6 +55,12 @@ Rails.application.routes.draw do
   #   end
 
   # resources :users
-  
-  resources :users, only: [:index, :show, :create, :destroy, :update]
+
+  resources :contact_shares, only: [:index, :show, :create, :destroy]
+
+  resources :contacts, only: [:index, :show, :create, :destroy, :update]
+
+  resources :users, only: [:index, :show, :create, :destroy, :update] do
+    resources :contacts, only: :index
+  end
 end
