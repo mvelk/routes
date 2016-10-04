@@ -2,10 +2,11 @@
 #
 # Table name: contacts
 #
-#  id      :integer          not null, primary key
-#  name    :string
-#  email   :string
-#  user_id :integer
+#  id        :integer          not null, primary key
+#  name      :string
+#  email     :string
+#  user_id   :integer
+#  favorited :boolean
 #
 
 class Contact < ActiveRecord::Base
@@ -24,4 +25,6 @@ class Contact < ActiveRecord::Base
   has_many :shared_users, :dependent => :destroy,
     through: :contact_shares,
     source: :user
+
+  has_many :comments, as: :commentable
 end

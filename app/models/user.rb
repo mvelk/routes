@@ -24,4 +24,6 @@ class User < ActiveRecord::Base
   has_many :shared_contacts, :dependent => :destroy,
     through: :contact_shares,
     source: :contact
+
+  has_many :comments, as: :commentable
 end

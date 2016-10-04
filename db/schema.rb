@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161003220859) do
+ActiveRecord::Schema.define(version: 20161004004616) do
+
+  create_table "comments", force: :cascade do |t|
+    t.string  "text",             null: false
+    t.string  "body",             null: false
+    t.integer "contact_id"
+    t.integer "user_id"
+    t.integer "contact_share_id"
+  end
+
+  add_index "comments", ["contact_id"], name: "index_comments_on_contact_id"
+  add_index "comments", ["contact_share_id"], name: "index_comments_on_contact_share_id"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "contact_shares", force: :cascade do |t|
     t.integer "contact_id", null: false
@@ -22,6 +34,7 @@ ActiveRecord::Schema.define(version: 20161003220859) do
     t.string  "name"
     t.string  "email"
     t.integer "user_id"
+    t.boolean "favorited"
   end
 
   create_table "users", force: :cascade do |t|
